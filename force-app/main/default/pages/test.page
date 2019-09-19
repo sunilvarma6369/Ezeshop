@@ -1,0 +1,2 @@
+<apex:page controller="SearchInVFController" sidebar="false" showHeader="false">
+</apex:page>

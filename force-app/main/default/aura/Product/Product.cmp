@@ -1,0 +1,29 @@
+<aura:component controller="fetchContactDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >    
+    <aura:attribute name="productList" type="List" />
+    <aura:attribute name="results" type="List" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    <!--aura:handler name="lists" value="{!this}" action="{!c.lists}" /-->
+    
+    
+    <lightning:select name="select1" label="Category" required="true">
+        <option>Select...</option>
+        <aura:iteration items="{!v.productList}" var="prod">
+        <option value="{!prod}">{!prod}</option><br/>
+            </aura:iteration>
+    </lightning:select>
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+  <thead>
+    <tr class="slds-line-height_reset">
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Product Name">Name</div>
+      </th>
+      <th class="slds-line-height_reset" scope="col">
+        <div class="slds-truncate" title="Category">Price</div>
+      </th>
+      </tr>
+        </thead>
+    </table>
+    
+</aura:component>

@@ -1,0 +1,4 @@
+<apex:page standardcontroller="ACCOUNT" sidebar="false" showHeader="false">
+    <apex:sectionHeader title="Details"  subtitle="{!ACCOUNT.Name}"/>
+    <apex:detail relatedList="false"/>
+</apex:page>

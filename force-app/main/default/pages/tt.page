@@ -1,0 +1,20 @@
+<apex:page Controller="SearchInVFController">
+    <apex:form >
+    	<apex:pageBlock >
+            <apex:commandButton value="click" action="{!carts}"/>
+                    <apex:pageBlockTable value="{!Records}" var="rec">
+                        <apex:column value="{!rec.Name__c}"/>
+                        <apex:column headerValue="Remove">
+                            <center>
+                                <apex:commandLink action="{!del}" type="image/png" >
+                                    <apex:image value="{!$Resource.delete}" width="4%"/>
+                                    <apex:param value="{!rec.Id}" assignTo="{!recId}" name="recId" />
+                                </apex:commandLink></center>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    <div align="center">
+                        <apex:commandButton value="Next" action="{!buy}" disabled="{!If(Records != null && Records.size > 0,false, true)}"/>
+                    </div>
+                </apex:pageBlock>
+    </apex:form>
+</apex:page>

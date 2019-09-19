@@ -1,0 +1,32 @@
+<aura:component controller="AccountTableController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <aura:attribute name="lstacc" type="list"/>    
+    <lightning:card title="Account Table">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Rating">Rating</div>
+                    </th>
+                </tr>
+            </thead> 
+            <tbody>
+                <aura:iteration items="{!v.lstacc}" var="acc">
+                    <tr class="slds-hint-parent">
+                        <th data-label="Opportunity Name" scope="row">
+                            <div class="slds-truncate" title="Cloudhub">
+                                <a href="javascript:void(0);" tabindex="-1">{!acc.Name}</a>
+                            </div>    
+                        </th>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!acc.Rating}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>  
+    </lightning:card>
+</aura:component>

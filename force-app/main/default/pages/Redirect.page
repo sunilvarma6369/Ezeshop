@@ -1,0 +1,360 @@
+<apex:page controller="SearchInVFController" sidebar="false" showHeader="false">
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+            <style type="text/css">
+                @page {
+                margin-bottom: 3cm;
+                @bottom-center {
+                content: element(footer);
+                }
+                }
+                
+                div.footer {
+                display: block;
+                padding: 100px;
+                padding-top:25px;
+                position: running(footer);
+                background-color: #232F3E;
+                color:white;
+                }
+                .fa {
+                padding: 20px;
+                font-size: 30px;
+                width: 50px;
+                text-align: center;
+                text-decoration: none;
+                margin: 5px 2px;
+                }
+                
+                .fa:hover {
+                opacity: 0.7;
+                }
+                
+                .fa-facebook {
+                background: #3B5998;
+                color: white;
+                }
+                body
+                {
+                background-color: white;
+                }
+                .header { 
+                width:700px;  float:left; padding:10px; 
+                } 
+                .clsCenter{
+                text-align:center;
+                }
+                #rich1 .sfdc_richtext img {
+                width:100px !important; 
+                }
+                .loading-icon {
+                background-image: url(/img/loading.gif);
+                width: 16px;
+                height: 16px;
+                }
+                
+                a.alpha-link {
+                font-weight: normal;
+                font-size: 91%;
+                padding: 0 4px;
+                color: #015BA7 !important;
+                }
+                
+                a.alpha-link+a.alpha-link {
+                border-left: 1px solid #CFCECE;
+                }
+                
+                a.alpha-link:hover {
+                background-color: #e0f5fc !important;
+                }
+                
+                a.alpha-select {
+                font-weight: bold;
+                text-decoration: none;
+                background-color: #C6E1FF;
+                color: #000000 !important;
+                }
+                
+                .search-block {
+                text-align: center;
+                }
+                
+                .search-block input {
+                margin: 0px 15px 0px 5px;
+                }
+                
+                .search-block-button {
+                min-width: 110px;
+                }
+                
+                .process-block {
+                text-align: center;
+                margin-top: 10px;
+                }
+                
+                .process-block input {
+                margin: 0px 15px;
+                }
+                
+                .process-block-button {
+                min-width: 110px;
+                }
+                
+                .page-buttons input {
+                min-width: 110px;
+                }
+                .top-bar{
+                position:relative;  
+                float:left;
+                width:40%;
+                padding-top:25px;
+                }
+                
+                .searchbar{
+                position:relative;  
+                float:left;
+                top:25%;
+                width:60%;
+                padding-top:40px;
+                }
+                .picklist {
+                position:relative;
+                height:33px;
+                width:255px;
+                font-size:14px;
+                font-style:italic;
+                font-weight:bold;
+                float:left;
+                padding-top:15px;
+                padding-bottom:5px;
+                padding-right:10px;
+                border: 5px;
+                }    
+                .myHeaderStyle{
+                background-color: white;
+                }
+                .orders{
+                position:relative;
+                float:right;
+                padding-right:30px;
+                padding-top:-20px;
+                padding-bottom:-30px;
+                width:11%;
+                }
+                .myClass
+                {
+                color:white;
+                background-color:#00CC00;
+                float:right;
+                padding:20px;
+                }
+                #spinner{
+        display: none;
+        width:200px;
+        height: 50px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        text-align:center;
+        padding:10px;
+        font:normal 16px Tahoma, Geneva, sans-serif;
+        margin-left: -100px;
+        margin-top: -100px;
+        z-index:2;
+        overflow: auto;
+        border:1px solid #CCC;
+        background-color:white;
+        z-index:100;
+        padding:5px;
+        line-height:20px;
+     }
+     #opaque {
+         position: fixed;
+         top: 0px;
+         left: 0px;
+         width: 100%;
+         height: 100%;
+         z-index: 1;
+         display: none;
+         background-color: gray;
+         filter: alpha(opacity=30);
+         opacity: 0.3;
+         -moz-opacity:0.3;
+         -khtml-opacity:0.3
+     }
+     * html #opaque {
+         position: absolute;
+     }.SpendingStyle { color:black !important;
+                }
+                h1
+                {
+                text-align:center;
+                color:white;
+                font-size: 40px;
+                }
+                .footer_container{
+                width: 960px;
+                }
+                .footer_container strong{
+                font-weight: bold;
+                }
+                .footer_container div.container{
+                width: 320px;
+                float: left;
+                }
+                .footer_container ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                }
+                .footer_container ul li {
+                width: 160px;
+                float: left;
+                }
+                .pick{
+                position:relative;
+                padding-left:100px;
+                }
+                .srchicon{
+                position:relative;
+                padding-top:20px;
+                }
+                .order{
+                postion:relative;
+                padding : 20px;
+                top:10px;
+                }
+                .cart{
+                postion:relative;
+                }
+                .ct{
+                text-align:center;
+                }
+                .pg{
+                background-color:#99dce4;
+                }
+                .squeeze {
+                overflow: auto;
+                height: 400px;
+                }
+                .spinnerBg{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: #000;
+                opacity: 0.2;
+                z-index: 999999;
+                }
+                .spinner{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-image: url("/img/loading32.gif");
+                background-size: 20px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                z-index: 9999999;
+                opacity: 1;
+                }
+                .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196J3;
+  padding: 15px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 20px;
+}
+                #col1{width:20%;display:inline-block; color:Blue;}
+                #col2{width:78%;display:inline-block;}
+                p {
+  font-family: "Times New Roman", Times, serif;
+                font-size:20px;
+}
+            </style>
+        </head>
+    <apex:form styleclass="myHeaderStyle">
+        <apex:slds >
+    <span class="top-bar">
+                        
+                            <a href="/apex/ezshopindex"><apex:image id="theImage" value="{!$Resource.Ezshop1}" width="25%"/></a>&nbsp;&nbsp;&nbsp;
+                            </span>
+            <div class="searchbar">
+                        <span class="srchicon">
+                            <apex:inputText value="{!searchKey}" label="Input" html-placeholder="Search" style="width:30%"/>&nbsp;&nbsp;&nbsp;
+                            <!--span id="g-search-button"-->
+                            <apex:commandlink action="{!search}" type="image/png" title="search">
+                                <apex:image value="{!$Resource.search}" width="3%"/>
+                            </apex:commandlink>&nbsp;&nbsp;&nbsp;</span>
+                        <!--apex:commandButton value="Clear records" action="{!clear}" title="clear"/-->  
+                    </div>
+            <div class="orders">
+                        <span class="order">
+                            <apex:commandLink type="image/png" title="Orders" action="{!orders}">
+                                <apex:image value="{!$Resource.orders}" width="25%"/>
+                            </apex:commandLink></span>
+                        &nbsp;&nbsp;<span class="cart">
+                        <apex:commandLink action="{!carts}" type="image/png" title="Cart">
+                            <apex:image value="{!$Resource.carts}" width="25%"/>
+                        </apex:commandLink><b><apex:outputText value="{!total}" style="color:yellow;font-size:15px"/></b></span>
+                    </div>
+                    <div style="background-color: #374037;width: 100%">
+                        <marquee scrollamount="8"> <h1>
+                            Flat 10% off on all Products </h1>
+                        </marquee>
+                    </div>
+            
+            
+       <center>     
+    <p>
+           <br/><br/><br/><br/><br/> <b>Your Order has been Placed.<br/>Thank You for purchasing via Ezshop.</b><br/><br/><br/><br/><br/>
+        </p></center></apex:slds>
+        </apex:form>
+         <!--footer-->
+            <div class="footer" name="footer">
+                <div class="footer_container">
+                    <div class="container">
+                        <strong>Categories</strong>
+                        <ul>
+                            <li>Books and Audible</li>
+                            <li>Electronics</li>
+                            <li>Home, Kitchen</li>
+                            <li>Men's Fashion</li>
+                            <li>Mobiles, Computers</li>
+                            <li>Sports, Bags, Luggage</li>
+                            <li>Toys, Baby Products</li>
+                            <li>Video Games</li>
+                            <li>Women's Fashion</li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <strong>Links</strong>
+                        <ul>
+                            <li>Home Page</li>
+                            <li>My Account</li>
+                            <li>Help</li>
+                            <li>About Us</li>
+                            <li>Careers</li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <a href="https://facebook.com/ss6369" class="fa fa-facebook"></a>
+                    </div>
+                </div>
+                <center>
+                    <a href="/apex/ezshopindex"><apex:image id="theImage" value="{!$Resource.Ezshop1}" width="10%"/></a></center>
+            </div>
+    </html>
+     <script type="text/JavaScript">
+    setTimeout("location.href = 'ezshopindex'",2000);
+ </script>
+</apex:page>

@@ -1,0 +1,35 @@
+<apex:page controller="SearchInVFController" renderAs="pdf" >
+    <head>
+   		
+    </head>
+    <apex:form styleClass="myFormStyle"><center>
+        <div class="headers">
+        <apex:image id="theImage" value="{!$Resource.Ezshop1}" width="25%"/>
+        
+        <h1 style="color:powderblue;">
+            Invoice
+        </h1>
+        </div></center>
+        <b>
+        Sold By:</b><br/>
+        EzeShop<br/>
+        Response Informatics Limited<br/>Madhapur<br/>Hyderabad,500081.
+        <br/>
+         <b>
+        Shipping Address:</b><br/>
+        Order Number:  {!invOId}<br/>
+        Order Date:  {!InvODate} <br/>
+        Invoice Number :<br/>
+        Invoice Date :<br/>
+        <hr size="14px" color="black"/>
+
+        <apex:pageBlock >
+            <apex:pageBlockTable style="width:100%" value="{!inv}" var="in" border="1">
+                <apex:column value="{!in.Name__c}"/>
+                <apex:column value="{!in.Model__c}"/>
+                <apex:column value="{!in.Price__c}"/>
+            </apex:pageBlockTable><br/><br/><br/><br/><br/>
+            Authorized Signature
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

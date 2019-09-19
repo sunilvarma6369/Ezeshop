@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:handler name="init" value="{!this}" action="{!c.doinit}" ></aura:handler>
+    <aura:attribute name="list" type="string"></aura:attribute>
+    <aura:iteration items="{!v.list}" var="a">
+        <table class="sfdc">
+            <thead>
+            <tr>
+                <th>Lists</th>
+                </tr>
+            
+            </thead>
+        <tbody>
+          
+             <tr>
+                <td>
+             {!a}
+            </td>   
+        </tr>
+            </tbody>
+    </table>
+          </aura:iteration>
+    </aura:component>

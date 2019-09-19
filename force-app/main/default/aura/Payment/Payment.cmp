@@ -1,0 +1,125 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+        <lightning:layout class="slds-page-header slds-page-header--object-home">
+            <lightning:layoutItem>
+                <lightning:icon iconName="standard:scan_card" alternativeText="My Expenses"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h1 class="slds-text-heading--label">EzShop</h1>
+                    <h2 class="slds-text-heading--medium">Payments</h2>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        
+        <aura:attribute name="options" type="List" default="[
+                                                            {'label': 'Debit Card', 'value': 'Debit Card'},
+                                                            {'label': 'Credit Card', 'value': 'Credit Card'},
+                                                            {'label': 'UPI', 'value': 'upi'}
+                                                            ]"/>
+        
+        <aura:attribute name="value" type="String"/>
+        <lightning:radioGroup aura:id="carddetail" name="radioButtonGroupRequired"
+                              label="Radio Button Group"
+                              options="{!v.options }"
+                              value="{!v.value }"
+                              type="button" onclick="{!c.calldetails}"/>
+        <lightning:button aura:id="uyp" name="UPI" label="upi" value="{!v.value}" onclick="{!c.upiCall}"/>
+        <lightning:input type="number" aura:id="expenseform" label="Amount"
+                         name="expenseamount"
+                         min="0.1"
+                         formatter="currency"
+                         step="0.01"
+                         disabled="" class="slds-input"
+                         value="{!v.newExpense.Amount__c}"
+                         messageWhenRangeUnderflow="Enter an amount that's at least Rs:0.10."/>
+        
+        <div aria-labelledby="newexpenseform" aura:id="debitId">
+            <fieldset class="slds-box slds-theme--default slds-container--small">
+                <legend id="newexpenseform" class="slds-text-heading--small 
+                                                   slds-p-vertical--medium">
+                    Enter Debit Card Details
+                </legend>
+                <form class="slds-form--stacked">  
+                    <lightning:input label="Card Holder Name"
+                                     aura:id="cardform"
+                                     name="holderName"
+                                     />
+                    <lightning:input aura:id="expenseform" label="Debit Card No"
+                                     name="expensename"
+                                     maxlength="16" /> 
+                    <lightning:input type="number" aura:id="expenseform" label="Expiry Date"
+                                     name="expenseamount"
+                                     placeholder="MM/YYYY"
+                                     messageWhenRangeUnderflow="Enter an Expiry Date"/>
+                    <lightning:input aura:id="expenseform" label="CVV"
+                                     name="expenseclient"
+                                     maxlength="3"
+                                     placeholder="***"/>
+                    <!--lightning:input type="date" aura:id="expenseform" label="Expense Date"
+                                         name="expensedate"
+                                         value="{!v.newExpense.Date__c}"/-->
+                    <lightning:input type="checkbox" aura:id="expenseform" label="Save This Card?"  
+                                     name="expreimbursed"
+                                     />
+                    <lightning:button label="Pay Now" 
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickCreate}"/>
+                </form>
+            </fieldset>
+        </div>
+        <div aria-labelledby="newexpenseform" aura:id="creditId" class="slds-hide">
+            
+            <fieldset class="slds-box slds-theme--default slds-container--small">
+                <legend id="newexpenseform" class="slds-text-heading--small 
+                                                   slds-p-vertical--medium">
+                    Enter Credit Card Details
+                </legend>
+                
+                
+                <form class="slds-form--stacked">  
+                    <lightning:input label="Card Holder Name"
+                                     aura:id="cardform"
+                                     name="holderName"
+                                     />
+                    <lightning:input aura:id="expenseform" label="Credit Card No"
+                                     name="expensename"
+                                     maxlength="16" /> 
+                    <lightning:input type="number" aura:id="expenseform" label="Expiry Date"
+                                     name="expenseamount"
+                                     placeholder="MM/YYYY"
+                                     pattern="[0-9]{2}-[0-9]{4}"
+                                     />
+                    <lightning:input aura:id="expenseform" label="CVV"
+                                     name="expenseclient"
+                                     maxlength="3"
+                                     placeholder="***"/>
+                    <lightning:input type="checkbox" aura:id="expenseform" label="Save This Card?"  
+                                     name="expreimbursed"/>
+                    <lightning:button label="Pay Now" 
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickCreate}"/>
+                </form>
+            </fieldset>
+        </div>
+        
+        
+        <div aria-labelledby="newexpenseform" aura:id="upiId" class="slds-hide" default="false">
+            
+            <fieldset class="slds-box slds-theme--default slds-container--small">
+                <legend id="newexpenseform" class="slds-text-heading--small 
+                                                   slds-p-vertical--medium">
+                    UPI
+                </legend>
+                <form class="slds-form--stacked">          
+                    <lightning:input aura:id="expenseform" label="UPI Address"
+                                     name="expensename"/> 
+                    <lightning:button label="Pay Now" 
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickCreate}"/>
+                </form>
+            </fieldset>
+        </div>
+    </aura:component>
